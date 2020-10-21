@@ -18,7 +18,7 @@ end = False
 user_count = 0
 total_count = 0
 
-def user_win():         #defining fuction for when the player wins
+def user_win():     #defining fuction for when the player wins
     print('The player wins!')
     global user_count
     user_count += 1
