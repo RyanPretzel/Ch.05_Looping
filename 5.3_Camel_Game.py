@@ -129,8 +129,8 @@ while done == False:
     else:
         print('That is not a valid response. ')
 
-    # #random event to find a camp or a wave
-    if random.randint(1,5) == 1:
+    # #random event to find a camp or a mana potion
+    if random.randint(1,6) == 1:
         print('\nYou find a camp of raptors nearby in the jungle.  Would you like to take it? (Y/N)')
         choice = input('Enter choice here (Y/N): ')
         if choice.upper() == 'Y':
@@ -141,7 +141,7 @@ while done == False:
             print('\nYou did not clear the raptor camp.')
         else:
             print('\nThat is not a valid response.')
-    elif random.randint(1,6) == 1:
+    elif random.randint(1,8) == 1:
         print('\nYou find the Scuttle Crab in the river.  Would you like to kill it?')
         choice = input('Enter choice here (Y/N): ')
         if choice.upper() == 'Y':
@@ -152,6 +152,9 @@ while done == False:
             print('\nYou did not clear the Scuttle Crab.')
         else:
             print('That is not a valid response.')
+    elif random.randint(1,7) == 1:
+        mana_pots += 1
+        print('You found a mana potion!')
 
     # #ways to die
     if zed_dist <= 0:
