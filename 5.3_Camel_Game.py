@@ -28,15 +28,15 @@ def zed_turn():
     global done
 
     print('\nYou try to turn and kill Zed')
-    if support == False:  # # If there is no support, then it will subtract 50 from final calculation
+    if support == False:  # # If there is no support, then it will subtract 50% chance from final calculation
         calc_support = 50
     else:
         calc_support = 0
-    if tower == True:  # # If under tower, plus 30
+    if tower == True:  # # If under tower, plus 30% chance
         calc_tower = 30
     else:
         calc_tower = 0
-    if mana <= 150:  # # if less than 150 mana, then subtract 25
+    if mana <= 150:  # # if less than 150 mana, then subtract 25% chance
         calc_mana = 25
     else:
         calc_mana = 0
@@ -60,7 +60,7 @@ while done == False:
         continue
     elif choice.upper() == 'A':     # #if user drinks mana potion
         if mana_pots >= 1:
-            print('\nYou drink a mana potion and receive 100 mana')
+            print('\nYou drink a mana potion and receive 100 mana.')
             mana += 100
             mana_pots -= 1
             continue
@@ -98,7 +98,7 @@ while done == False:
     elif choice.upper() == 'E':     # #if user does a status check, prints out status of all variables
         print('\nMana:', mana,'\nMana Potions:', mana_pots,'\nSupport Unhappiness:', support_unhappiness, '\nDistance from Zed:', zed_dist, '\nCS:' ,cs)
         if support == True:
-            print('Your support is still here.')
+            print('Your support is here.')
             continue
         else:
             print('Your support is gone.')
@@ -152,7 +152,7 @@ while done == False:
             print('\nYou did not clear the Scuttle Crab.')
         else:
             print('That is not a valid response.')
-    elif random.randint(1,7) == 1:
+    elif random.randint(1,8) == 1:
         mana_pots += 1
         print('You found a mana potion!')
 
@@ -188,7 +188,7 @@ while done == False:
             support = False
             print('\nYou support has left you.')
         elif support_unhappiness >= 10:     # #if he is kinda unhappy he might leave
-            if random.randint(1,4) == 3:
+            if random.randint(1,4) == 1:
                 support = False
                 print('Your support has left you.')
             else:                           # #warning that he might leave
@@ -198,7 +198,7 @@ while done == False:
     else:       # #chance that the support returns
         if random.randint(1,15) == 5:
             support = True
+            support_unhappiness = 0
             print('Your support has returned!')
-
 
 print('\nYou finished the game with '+str(cs)+' cs.')
