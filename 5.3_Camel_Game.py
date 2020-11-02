@@ -106,12 +106,15 @@ while done == False:
     elif choice.upper() == 'F':     # #user quickly gets the wave, but they use mana
         temp_mana = random.randrange(130, 161, 15)
         mana -= temp_mana
+        support_unhappiness += 1
         print('\nYou quickly clear the wave, but you use '+str(temp_mana)+' mana.  You now have '+str(mana)+' mana.')
         cs += random.randint(5,7)
         zed_dist -= random.randint(10,15)
+        print('\nYou now have '+str(cs)+' cs.')
     elif choice.upper() == 'G':     # #slowly greed for the wave
         cs += random.randint(5,7)
         zed_dist -= random.randint(13,17)
+        support_unhappiness += 1
         print('\nYou now have '+str(cs)+' cs.')
     elif choice.upper() == 'H':     # #share the wave with the support.
         if support == True:
@@ -126,6 +129,7 @@ while done == False:
             continue
     elif choice.upper() == 'I':     # #turn on Zed
         zed_turn()
+        continue
     else:
         print('That is not a valid response. ')
 
@@ -193,10 +197,10 @@ while done == False:
                 print('Your support has left you.')
             else:                           # #warning that he might leave
                 print('Your support is unhappy.')
-        elif support_unhappiness >8:
+        elif support_unhappiness > 8:
             print('Your support is unhappy.')
     else:       # #chance that the support returns
-        if random.randint(1,15) == 5:
+        if random.randint(1,18) == 1:
             support = True
             support_unhappiness = 0
             print('Your support has returned!')
