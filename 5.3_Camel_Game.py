@@ -11,6 +11,7 @@ Try to escape to your fountain with the most CS possible
 '''
 
 import random
+import time
 
 done = False
 cs = 0
@@ -42,12 +43,23 @@ def zed_turn():
         calc_mana = 0
     turn = (random.randint(cs - 10, cs + 25) - calc_support + calc_tower - calc_mana) / 100
 
-    if turn >= 1:  # # if the turn is sucessful, then kill zed and win the game
-        print('You sucessfully kill Zed! Congratulations!')
+    for i in range(1,4):
+        b = "Calculating" + "." * i
+        print("\r", b, end="")
+        time.sleep(.75)
+
+    if turn >= 1: # # if the turn is sucessful, then kill zed and win the game
+        print('\n\nYou sucessfully kill Zed!  Congratulations!')
     if turn < 1:
-        print('You were not strong enough, so Zed killed you.  Try getting more CS next time.')
+        print('\n\nYou were not strong enough, so Zed killed you.  Try getting more CS next time.')
     done = True
 
+
+# # Instructions on how to play the game
+print('Welcome to league of legends!  You made a mistake coming here.')
+print("Today you will be playing an ADC, which means you need CS (minion kills) in order to do anything. Focus on farming and don't get killed.")
+print('The mid lane assassin is Zed, and he is missing.  Make sure you keep enough distance from him.')
+print('Make sure you keep your support happy, they can leave you.')
 
 while done == False:
     if support == True:
@@ -60,7 +72,7 @@ while done == False:
         continue
     elif choice.upper() == 'A':     # #if user drinks mana potion
         if mana_pots >= 1:
-            print('\nYou drink a mana potion and receive 100 mana.')
+            print('\nYou drink a mana potion and receive 100 mana.  You now have '+str(mana)+' mana.')
             mana += 100
             mana_pots -= 1
             continue
@@ -134,7 +146,7 @@ while done == False:
         print('That is not a valid response. ')
 
     # #random event to find a camp or a mana potion
-    if random.randint(1,6) == 1:
+    if random.randint(1,6) == 1 and tower == False:
         print('\nYou find a camp of raptors nearby in the jungle.  Would you like to take it? (Y/N)')
         choice = input('Enter choice here (Y/N): ')
         if choice.upper() == 'Y':
@@ -145,7 +157,7 @@ while done == False:
             print('\nYou did not clear the raptor camp.')
         else:
             print('\nThat is not a valid response.')
-    elif random.randint(1,8) == 1:
+    elif random.randint(1,8) == 1 and tower == False:
         print('\nYou find the Scuttle Crab in the river.  Would you like to kill it?')
         choice = input('Enter choice here (Y/N): ')
         if choice.upper() == 'Y':
@@ -156,6 +168,16 @@ while done == False:
             print('\nYou did not clear the Scuttle Crab.')
         else:
             print('That is not a valid response.')
+    elif random.randint(1,4) == 1 and tower == True:
+        print('\nYou find a wave in mid lane.  Would you like to steal it? (Y/N)')
+        choice = input('Enter choice here (Y/N): ')
+        if choice.upper() == 'Y':
+            cs += random.randint(5,7)
+            zed_dist -= random.randint(9,14)
+        elif choice.upper() == 'N':
+            print('\nYou did not take the mid wave.')
+        else:
+            print('\nThat is not a valid response.')
     elif random.randint(1,8) == 1:
         mana_pots += 1
         print('You found a mana potion!')
@@ -188,10 +210,10 @@ while done == False:
 
 
     if support == True:     # #If the support is still there
-        if support_unhappiness >= 15:       # #if he is too unhappy he is just gone
+        if support_unhappiness >= 16:       # #if he is too unhappy he is just gone
             support = False
             print('\nYou support has left you.')
-        elif support_unhappiness >= 10:     # #if he is kinda unhappy he might leave
+        elif support_unhappiness >= 10:     # #if he is kinda unhappy there is a chance that he leaves
             if random.randint(1,4) == 1:
                 support = False
                 print('Your support has left you.')
